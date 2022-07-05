@@ -1,3 +1,3 @@
-# Admin Dashboard
+# Library
 
 👉🏻 [View Live](https://armandocrn.github.io/library-OdinProject//) 👈🏻
