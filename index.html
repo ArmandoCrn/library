@@ -39,8 +39,8 @@
           <section class="books-cards">
             <div class="card">
               <p class="name">Prova</p>
-              <p class="author">Prova</p>
-              <p><span class="pages">8000</span> pages</p>
+              <p>Author: <span class="author">Prova</span></p>
+              <p>Pages: <span class="pages">8000</span></p>
 
               <button class="">Reade/not read</button>
               <button class="remove">Remove</button>
@@ -53,17 +53,23 @@
         <form action="#" class="input-fields">
           <div class="input">
             <label for="book-name">Title:</label>
-            <input type="text" name="book-name" id="book-name" required />
+            <input type="text" name="book-name" id="book-name" maxlength="100" required />
           </div>
 
           <div class="input">
             <label for="book-author">Author:</label>
-            <input type="text" name="book-author" id="book-author" required />
+            <input
+              type="text"
+              name="book-author"
+              id="book-author"
+              maxlength="100"
+              required
+            />
           </div>
 
           <div class="input">
             <label for="book-pages">Pages:</label>
-            <input type="number" name="book-pages" id="book-pages" required />
+            <input type="number" name="book-pages" id="book-pages" max="10000" required />
           </div>
 
           <div class="input">

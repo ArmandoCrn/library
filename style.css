@@ -1,12 +1,13 @@
 :root {
   --main-color: #36c6f1;
-
   --white: #fffbfb;
   --grey: #f0eef1;
+  --black: #3d3d3d;
   --red: #fa5656;
   --light-green: #84f580;
   --light-red: #f57c7c;
-  --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+  --shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
 }
 
 /*========
@@ -34,11 +35,26 @@ button {
   border: none;
   border-radius: 10px;
   padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 0.5rem;
 }
 
 .add-books button,
 #submit {
   background-color: var(--main-color);
+}
+
+.read {
+  background-color: var(--light-green);
+}
+
+.not-read {
+  background-color: var(--red);
 }
 
 /*============
@@ -47,6 +63,7 @@ button {
 
 body {
   font-family: "Signika Negative", sans-serif;
+  word-wrap: break-word;
 }
 
 button,
@@ -70,25 +87,78 @@ select {
   font-weight: bold;
 }
 
+.card p:first-child {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.card p:nth-child(2) {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.card p:nth-child(3) {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.card button {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.remove {
+  color: var(--white);
+}
+
 /*==========
   SPECIFIC
 ==========*/
 /*-- Header --*/
+header {
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+}
+
 header h1 {
   text-align: center;
-  padding-block: 1rem;
-  background-color: var(--white);
+  padding-block: 0.7rem;
 }
 
 /*-- Button add-books --*/
 .add-books {
   display: flex;
   justify-content: center;
-  margin-block: 2.4rem;
+  margin-top: 1.4rem;
+  margin-bottom: 2.4rem;
 }
 
 .add-books button {
   padding: 0.6rem 1.4rem;
+}
+
+/*-- Section | books-cards --*/
+.books-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+}
+
+.card button {
+  margin-top: 0.4rem;
+}
+
+.remove {
+  background-color: var(--black);
 }
 
 /*-- Modal --*/
@@ -126,7 +196,10 @@ select {
 
 /*FIXME: rimuovi il none qui*/
 .active {
-  display: none;
+  /* display: none; */
+  /*FIXME: LEVA sta schifezza dopo*/
+  display: flex;
+  justify-content: center;
 }
 
 /*==============
@@ -134,5 +207,5 @@ select {
 ==============*/
 /*FIXME: aumenta un po il font size dell'h1*/
 /* .container {
-  max-width: 1200px;
+  padding: 1rem
 } */
