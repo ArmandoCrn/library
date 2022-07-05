@@ -38,6 +38,10 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  opacity: 75%;
+}
+
 .container {
   max-width: 1200px;
   margin-inline: auto;
@@ -87,17 +91,17 @@ select {
   font-weight: bold;
 }
 
-.card p:first-child {
+.card .name {
   font-size: 1.4rem;
   font-weight: bold;
 }
 
-.card p:nth-child(2) {
+.card .author {
   font-size: 1.2rem;
   font-weight: 500;
 }
 
-.card p:nth-child(3) {
+.card .pages {
   font-size: 1.1rem;
   font-weight: 400;
 }
