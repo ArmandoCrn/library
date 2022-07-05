@@ -7,12 +7,68 @@
     <title>Library</title>
 
     <!-- ICON -->
-    <link rel="icon" href="#" />
+    <!-- <link rel="icon" href="#" /> -->
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
     <!-- JS -->
     <script src="script.js" defer></script>
+
+    <!-- FONT - UBUNTU-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
-  <body></body>
+  <body>
+    <div class="content">
+      <header>
+        <h1>My Library</h1>
+      </header>
+
+      <main>
+        <section class="add-books">
+          <div>
+            <div>
+              <label for="book-name">Title:</label>
+              <input type="text" name="book-name" id="book-name" required />
+            </div>
+
+            <div>
+              <label for="book-author">Author:</label>
+              <input type="text" name="book-author" id="book-author" required />
+            </div>
+
+            <div>
+              <label for="book-pages">Pages:</label>
+              <input type="number" name="book-pages" id="book-pages" required />
+            </div>
+
+            <div>
+              <label for="book-status"></label>
+              <select name="book-status" id="book-status">
+                <option value="read">Read</option>
+                <option value="not-read">Not read</option>
+              </select>
+            </div>
+
+            <button id="submit">Submit</button>
+          </div>
+        </section>
+
+        <section class="books-cards">
+          <div class="card">
+            <p class="name">Prova</p>
+            <p class="author">Prova</p>
+            <p><span class="pages">8000</span> pages</p>
+
+            <button class="">Reade/not read</button>
+            <button class="remove">Remove</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
 </html>
