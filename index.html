@@ -13,11 +13,11 @@
     <!-- JS -->
     <script src="script.js" defer></script>
 
-    <!-- FONT - UBUNTU-->
+    <!-- FONT - Signika Negative -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -25,50 +25,58 @@
   <body>
     <div class="content">
       <header>
-        <h1>My Library</h1>
+        <div class="container">
+          <h1>My Library</h1>
+        </div>
       </header>
 
       <main>
-        <section class="add-books">
-          <div>
-            <div>
-              <label for="book-name">Title:</label>
-              <input type="text" name="book-name" id="book-name" required />
+        <div class="container">
+          <section class="add-books">
+            <button>+ Add book</button>
+          </section>
+
+          <section class="books-cards">
+            <div class="card">
+              <p class="name">Prova</p>
+              <p class="author">Prova</p>
+              <p><span class="pages">8000</span> pages</p>
+
+              <button class="">Reade/not read</button>
+              <button class="remove">Remove</button>
             </div>
-
-            <div>
-              <label for="book-author">Author:</label>
-              <input type="text" name="book-author" id="book-author" required />
-            </div>
-
-            <div>
-              <label for="book-pages">Pages:</label>
-              <input type="number" name="book-pages" id="book-pages" required />
-            </div>
-
-            <div>
-              <label for="book-status"></label>
-              <select name="book-status" id="book-status">
-                <option value="read">Read</option>
-                <option value="not-read">Not read</option>
-              </select>
-            </div>
-
-            <button id="submit">Submit</button>
-          </div>
-        </section>
-
-        <section class="books-cards">
-          <div class="card">
-            <p class="name">Prova</p>
-            <p class="author">Prova</p>
-            <p><span class="pages">8000</span> pages</p>
-
-            <button class="">Reade/not read</button>
-            <button class="remove">Remove</button>
-          </div>
-        </section>
+          </section>
+        </div>
       </main>
+
+      <div class="modal active">
+        <form action="#" class="input-fields">
+          <div class="input">
+            <label for="book-name">Title:</label>
+            <input type="text" name="book-name" id="book-name" required />
+          </div>
+
+          <div class="input">
+            <label for="book-author">Author:</label>
+            <input type="text" name="book-author" id="book-author" required />
+          </div>
+
+          <div class="input">
+            <label for="book-pages">Pages:</label>
+            <input type="number" name="book-pages" id="book-pages" required />
+          </div>
+
+          <div class="input">
+            <label for="book-status">Satus</label>
+            <select name="book-status" id="book-status">
+              <option value="read">Read</option>
+              <option value="not-read">Not read</option>
+            </select>
+          </div>
+
+          <button id="submit">Submit</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
