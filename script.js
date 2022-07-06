@@ -7,6 +7,10 @@ const bookPages = document.querySelector("#book-pages");
 const bookStatus = document.querySelector("#book-status");
 const submitBtn = document.querySelector("#submit");
 
+const addBookBtn = document.querySelector("#add-book");
+const modal = document.querySelector(".modal");
+const inputField = document.querySelector(".input-fields");
+
 const myLibrary = [];
 
 // FUNCTIONS
@@ -34,6 +38,7 @@ function addBook() {
   if (name && author && pages) {
     let newBook = new Book(name, author, pages, status);
 
+    hideModal();
     myLibrary.push(newBook);
     showBook(newBook);
   }
@@ -77,10 +82,6 @@ function showBook(book) {
 
 function resetInput(input) {
   input.value = "";
-
-  // invoca una funzione che chiude in automatico il modale
-  // sperando che non ti causi errori stupidi dicendo che gli input son vuoti
-  //o scrivilo direttamente qui dentro
 }
 
 // Change status on book in the Library and show the right color
@@ -118,16 +119,21 @@ function removeBook(e) {
   parent.remove();
 }
 
+function showModal() {
+  modal.classList.add("active");
+}
+
+function hideModal() {
+  modal.classList.remove("active");
+}
+
+function propagation(e) {
+  e.stopPropagation();
+}
+
 //EVENTS
 window.addEventListener("load", windowLoad);
+addBookBtn.addEventListener("click", showModal);
 submitBtn.addEventListener("click", addBook);
-
-/*TODO:
-2 - Mostrare e rimuovere il modale premendo il btn + add book
-Quindi toccherà poi rendere steacky il coso, nasconderlo sotto e farlo poppare sopra
-ricorda di mettere la pagina a tutto schermo
-
-fai comparire un overlay che renda tutto scuro lo sfondo sotto
-QUANDO premi lo sfondo e non l'interno del modale devi farlo scomparire
-bella rottura :/
-*/
+inputField.addEventListener("click", propagation, { capture: false });
+modal.addEventListener("click", hideModal);

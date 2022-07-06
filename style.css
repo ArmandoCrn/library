@@ -6,7 +6,7 @@
   --red: #fa5656;
   --light-green: #84f580;
   --light-red: #f57c7c;
-
+  --bg-modal: rgba(0, 0, 0, 0.5);
   --shadow: 0px 1px 4px rgba(0, 0, 0, 0.16);
 }
 
@@ -86,14 +86,23 @@ select {
   font-size: 1rem;
 }
 
+#submit,
+.add-books button,
+.card .name,
+.card button {
+  font-weight: bold;
+}
+
+#submit {
+  font-size: 1.2rem;
+}
+
 .add-books button {
   font-size: 1.5rem;
-  font-weight: bold;
 }
 
 .card .name {
   font-size: 1.4rem;
-  font-weight: bold;
 }
 
 .card .author {
@@ -108,7 +117,6 @@ select {
 
 .card button {
   font-size: 1.2rem;
-  font-weight: bold;
 }
 
 .remove {
@@ -172,11 +180,19 @@ header h1 {
 }
 
 .input-fields {
+  transform: scale(0);
+  transition: 0.25s ease-in-out;
+  background-color: var(--grey);
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  gap: 0.6rem;
-  max-width: 320px;
+  gap: 0.8rem;
+  width: 300px;
+}
+
+.active .input-fields {
+  transform: scale(1);
 }
 
 .input {
@@ -190,7 +206,7 @@ label {
 
 input,
 select {
-  padding: 0.2rem 0.5rem;
+  padding: 0.4rem 0.6rem;
   border: 1px solid black;
   border-radius: 10px;
 }
@@ -199,12 +215,21 @@ select {
   padding: 0.7rem 4rem;
 }
 
-/*FIXME: rimuovi il none qui*/
-.active {
-  /* display: none; */
-  /*FIXME: LEVA sta schifezza dopo*/
+.modal {
+  transform: scale(0);
+  background-color: var(--bg-modal);
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.modal.active {
+  transform: scale(1);
 }
 
 /*==============
