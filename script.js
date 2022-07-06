@@ -119,12 +119,8 @@ function removeBook(e) {
   parent.remove();
 }
 
-function showModal() {
-  modal.classList.add("active");
-}
-
-function hideModal() {
-  modal.classList.remove("active");
+function toggleModal() {
+  modal.classList.toggle("active");
 }
 
 function propagation(e) {
@@ -133,7 +129,7 @@ function propagation(e) {
 
 //EVENTS
 window.addEventListener("load", windowLoad);
-addBookBtn.addEventListener("click", showModal);
+addBookBtn.addEventListener("click", toggleModal);
+modal.addEventListener("click", toggleModal);
 submitBtn.addEventListener("click", addBook);
 inputField.addEventListener("click", propagation, { capture: false });
-modal.addEventListener("click", hideModal);
