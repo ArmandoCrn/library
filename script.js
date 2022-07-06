@@ -47,16 +47,26 @@ function showBook(book) {
   div.classList.add("card");
   div.dataset.index = `${indexOfBook}`;
   indexOfBook++;
+  let bookStatus = "";
+
+  if (book.status === "read") {
+    bookStatus = "Read";
+  } else {
+    bookStatus = "Not-read";
+  }
 
   div.innerHTML = `
   <p class="name">${book.name}</p>
   <p class="author">Author: ${book.author}</p>
   <p class="pages">Pages: ${book.pages}</p>
 
-  <button class="">${book.status}</button>
+  <button class="status ${book.status}">${bookStatus}</button>
   <button class="remove">Remove</button>
   `;
   bookLibrary.appendChild(div);
+  const statusBtn = document.querySelectorAll(".status");
+  statusBtn.forEach((btn) => btn.addEventListener("click", changeStatus));
+
   const newRemoveBook = document.querySelectorAll(".remove");
   newRemoveBook.forEach((remove) => remove.addEventListener("click", removeBook));
 
@@ -73,53 +83,38 @@ function resetInput(input) {
   //o scrivilo direttamente qui dentro
 }
 
-// Change status on book in the Library
-function changeStatus(index) {
+// Change status on book in the Library and show the right color
+function changeStatus(e) {
+  const target = e.target;
+  const index = target.parentElement.dataset.index;
   const currentStatus = myLibrary[index].status;
 
   if (currentStatus === "read") {
-    myLibrary[index].status = "not-read";
+    toggleStatus("not-read", "Not-read", target, index);
   }
 
   if (currentStatus === "not-read") {
-    myLibrary[index].status = "read";
+    toggleStatus("read", "Read", target, index);
   }
 }
 
-/*
-  quando premiamo il bottone read
+function toggleStatus(status1, status2, target, index) {
+  myLibrary[index].status = status1;
+  target.innerText = status2;
 
-  cosa deve succedere?
-  Qui dentro dibbiamo solamente rendere possibile
-  il cambiamento detto status all'interno degli oggetti in library
-  per farlo però dobbiamo sapere il loro index
-  e per sapere il loro index serve aggiungere la funzionalità al pulsante
-  che va a prendere il datalist
-
-  quindi
-
-  mettiamo come argomento l'index e creiamo la funzione tenendo in mente questo
-
-
-  if (status da dove lo prendiamo? Dall'obj? === "read") {
-    this.status = "not-read";
-    selezioni il bottone e gli fai cambiare quello che mostra
-    e cambi la classe in not-read
+  if (status1 === "read") {
+    target.classList.remove("not-read");
+    target.classList.add("read");
   } else {
-    this.status = "read";
-    selezioni il bottone e gli fai cambiare scrittura
-    e metti la classe "read"
+    target.classList.remove("read");
+    target.classList.add("not-read");
   }
-
-
-  */
+}
 
 function removeBook(e) {
   const parent = e.target.parentElement;
   const index = parent.dataset.index;
-  // Delite the object in myLibrary
   myLibrary.splice(index, 1);
-
   parent.remove();
 }
 
@@ -128,18 +123,6 @@ window.addEventListener("load", windowLoad);
 submitBtn.addEventListener("click", addBook);
 
 /*TODO:
-1 - Poter cambiare colore al btn read/not read
-rispetto a se il value di status è read o meno
-
-if value === read
-metti la classe read al coso 
-e come innertext del bottone scrivi "Read"
-
-altrimenti
-classe not read al btn
-e innerText "Not-read"
-
-
 2 - Mostrare e rimuovere il modale premendo il btn + add book
 Quindi toccherà poi rendere steacky il coso, nasconderlo sotto e farlo poppare sopra
 ricorda di mettere la pagina a tutto schermo
