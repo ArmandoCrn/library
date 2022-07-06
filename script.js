@@ -7,17 +7,7 @@ const bookPages = document.querySelector("#book-pages");
 const bookStatus = document.querySelector("#book-status");
 const submitBtn = document.querySelector("#submit");
 
-// This is only for the first remove on the page (only for Prova card)
-const fixRemoveBook = document.querySelector(".remove");
-
-const myLibrary = [
-  {
-    name: "Prova",
-    author: "Prova",
-    pages: "800",
-    status: "read",
-  },
-];
+const myLibrary = [];
 
 // FUNCTIONS
 function Book(name, author, pages, status) {
@@ -27,24 +17,13 @@ function Book(name, author, pages, status) {
   this.status = status;
 }
 
-Book.prototype.changeStatus = function () {
-  //na roba del genere?
-  /*
-  quando premiamo il bottone read
+// Add the first "prova" book
+function windowLoad() {
+  let newBook = new Book("Prova", "Prova", "800", "read");
 
-  if (status da dove lo prendiamo? Dall'obj? === "read") {
-    this.status = "not-read";
-    selezioni il bottone e gli fai cambiare quello che mostra
-    e cambi la classe in not-read
-  } else {
-    this.status = "read";
-    selezioni il bottone e gli fai cambiare scrittura
-    e metti la classe "read"
-  }
-
-
-  */
-};
+  myLibrary.push(newBook);
+  showBook(newBook);
+}
 
 function addBook() {
   const name = bookName.value;
@@ -60,13 +39,15 @@ function addBook() {
   }
 }
 
-let indexOfBook = 1;
+// Index for data-list of book in the library array
+let indexOfBook = 0;
 
 function showBook(book) {
   const div = document.createElement("div");
   div.classList.add("card");
   div.dataset.index = `${indexOfBook}`;
   indexOfBook++;
+
   div.innerHTML = `
   <p class="name">${book.name}</p>
   <p class="author">Author: ${book.author}</p>
@@ -86,7 +67,52 @@ function showBook(book) {
 
 function resetInput(input) {
   input.value = "";
+
+  // invoca una funzione che chiude in automatico il modale
+  // sperando che non ti causi errori stupidi dicendo che gli input son vuoti
+  //o scrivilo direttamente qui dentro
 }
+
+// Change status on book in the Library
+function changeStatus(index) {
+  const currentStatus = myLibrary[index].status;
+
+  if (currentStatus === "read") {
+    myLibrary[index].status = "not-read";
+  }
+
+  if (currentStatus === "not-read") {
+    myLibrary[index].status = "read";
+  }
+}
+
+/*
+  quando premiamo il bottone read
+
+  cosa deve succedere?
+  Qui dentro dibbiamo solamente rendere possibile
+  il cambiamento detto status all'interno degli oggetti in library
+  per farlo però dobbiamo sapere il loro index
+  e per sapere il loro index serve aggiungere la funzionalità al pulsante
+  che va a prendere il datalist
+
+  quindi
+
+  mettiamo come argomento l'index e creiamo la funzione tenendo in mente questo
+
+
+  if (status da dove lo prendiamo? Dall'obj? === "read") {
+    this.status = "not-read";
+    selezioni il bottone e gli fai cambiare quello che mostra
+    e cambi la classe in not-read
+  } else {
+    this.status = "read";
+    selezioni il bottone e gli fai cambiare scrittura
+    e metti la classe "read"
+  }
+
+
+  */
 
 function removeBook(e) {
   const parent = e.target.parentElement;
@@ -97,8 +123,9 @@ function removeBook(e) {
   parent.remove();
 }
 
+//EVENTS
+window.addEventListener("load", windowLoad);
 submitBtn.addEventListener("click", addBook);
-fixRemoveBook.addEventListener("click", removeBook);
 
 /*TODO:
 1 - Poter cambiare colore al btn read/not read
