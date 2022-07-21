@@ -38,7 +38,7 @@ function addBook() {
   if (name && author && pages) {
     let newBook = new Book(name, author, pages, status);
 
-    hideModal();
+    toggleModal();
     myLibrary.push(newBook);
     showBook(newBook);
   }
